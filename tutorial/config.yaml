@@ -1,0 +1,36 @@
+name: tutorial
+networks:
+  - id: 8453
+    start_block: 0
+    contracts:
+      # Your existing contract
+      - name: NonfungiblePositionManager
+        address: 0x03a520b32C04BF3bEEf7BEb72E919cf822Ed34f1
+        handler: src/EventHandlers.ts
+        events:
+          - event: Approval(address indexed owner, address indexed approved, uint256 indexed tokenId)
+          - event: ApprovalForAll(address indexed owner, address indexed operator, bool approved)
+          - event: Collect(uint256 indexed tokenId, address recipient, uint256 amount0, uint256 amount1)
+          - event: DecreaseLiquidity(uint256 indexed tokenId, uint128 liquidity, uint256 amount0, uint256 amount1)
+          - event: IncreaseLiquidity(uint256 indexed tokenId, uint128 liquidity, uint256 amount0, uint256 amount1)
+          - event: Transfer(address indexed from, address indexed to, uint256 indexed tokenId)
+      
+      # ADD THIS: UniversalRouter contract
+      - name: UniversalRouter
+        address: 0x6ff5693b99212da76ad316178a184ab56d299b43
+        handler: src/EventHandlers.ts
+        events:
+          - event: SwapETHForExactTokens(uint256 amountOut, address[] path, address to, uint256 deadline)
+          - event: SwapExactETHForTokens(uint256 amountOutMin, address[] path, address to, uint256 deadline)
+          - event: SwapExactTokensForETH(uint256 amountIn, uint256 amountOutMin, address[] path, address to, uint256 deadline)
+          - event: SwapTokensForExactETH(uint256 amountOut, uint256 amountInMax, address[] path, address to, uint256 deadline)
+
+      # ADD THIS: Factory contract  
+      - name: UniswapV3Factory
+        address: 0x33128a8fC17869897dcE68Ed026d694621f6FDfD
+        handler: src/EventHandlers.ts
+        events:
+          - event: PoolCreated(address indexed token0, address indexed token1, uint24 indexed fee, int24 tickSpacing, address pool)
+
+unordered_multichain_mode: true
+preload_handlers: true

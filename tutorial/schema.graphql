@@ -1,0 +1,90 @@
+type NonfungiblePositionManager_Approval {
+  id: ID!
+  owner: String!
+  approved: String!
+  tokenId: BigInt!
+}
+
+type NonfungiblePositionManager_ApprovalForAll {
+  id: ID!
+  owner: String!
+  operator: String!
+  approved: Boolean!
+}
+
+type NonfungiblePositionManager_Collect {
+  id: ID!
+  tokenId: BigInt!
+  recipient: String!
+  amount0: BigInt!
+  amount1: BigInt!
+}
+
+type NonfungiblePositionManager_DecreaseLiquidity {
+  id: ID!
+  tokenId: BigInt!
+  liquidity: BigInt!
+  amount0: BigInt!
+  amount1: BigInt!
+}
+
+type NonfungiblePositionManager_IncreaseLiquidity {
+  id: ID!
+  tokenId: BigInt!
+  liquidity: BigInt!
+  amount0: BigInt!
+  amount1: BigInt!
+}
+
+type NonfungiblePositionManager_Transfer {
+  id: ID!
+  from: String!
+  to: String!
+  tokenId: BigInt!
+}
+
+type SwapETHForExactTokens @entity {
+  id: ID!
+  amountOut: BigInt!
+  path: [String!]!
+  to: String!
+  deadline: BigInt!
+  timestamp: BigInt!
+  blockNumber: BigInt!
+  transactionHash: String!
+}
+
+type SwapExactETHForTokens @entity {
+  id: ID!
+  amountOutMin: BigInt!
+  path: [String!]!
+  to: String!
+  deadline: BigInt!
+  timestamp: BigInt!
+  blockNumber: BigInt!
+  transactionHash: String!
+}
+
+type SwapExactTokensForETH @entity {
+  id: ID!
+  amountIn: BigInt!
+  amountOutMin: BigInt!
+  path: [String!]!
+  to: String!
+  deadline: BigInt!
+  timestamp: BigInt!
+  blockNumber: BigInt!
+  transactionHash: String!
+}
+
+type PoolCreated @entity {
+  id: ID!
+  token0: String!
+  token1: String!
+  fee: BigInt!
+  tickSpacing: BigInt!
+  pool: String!
+  timestamp: BigInt!
+  blockNumber: BigInt!
+  transactionHash: String!
+}
